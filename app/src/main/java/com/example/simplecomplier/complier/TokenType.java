@@ -8,6 +8,10 @@ public enum TokenType {
     GT, GE, //比较
     Int, //关键字
     Assignment, //赋值
-    Plus,Minus,
-    Star,Slash,
+    Plus, Minus,
+    Star, Slash,
+
+    Semicolon,//分号
+    LeftParen,
+    RightParen,
 }

@@ -1,27 +1,26 @@
 package com.example.simplecomplier
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.example.simplecomplier.complier.SimpleLexer
+import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private val simpleLexer = SimpleLexer()
+    private val map = mapOf(
+        "词法分析" to LexerActivity::class.java,
+        "简单计算器" to CalculatorActivity::class.java
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        et_input.setText("int age = 40;")
+        val list = map.keys.toList()
 
-        btn_parse.setOnClickListener {
-            val s = et_input.text.toString()
-            simpleLexer.tokenize(s)
-            val builder = StringBuilder()
-            for (token in simpleLexer.tokens) {
-                builder.append(String.format("%-8s%-8s",token.text,token.type)).append("\n")
-            }
-            tv_display.text = builder
+        listView_main.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, list)
+        listView_main.setOnItemClickListener { parent, view, position, id ->
+            startActivity(Intent(this, map[list[position]]))
         }
     }
 }
