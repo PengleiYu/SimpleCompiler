@@ -11,7 +11,7 @@ class CalculatorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_repl)
 
-        et_input_repl.setText("1 + 8 * 2 ")
+        et_input_repl.setText("2*3*4/5;")
         val calculator = SimpleParser()
         btn_parse_repl.setOnClickListener {
             val script: String = et_input_repl.text.toString()
